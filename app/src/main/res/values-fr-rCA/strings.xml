@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Juego de matemáticas</string>
+    <string name="welcomeText">Bienvenido a Math Game</string>
+    <string name="yourScore">Tu puntuación</string>
+    <string name="reset">Reiniciar</string>
+</resources>

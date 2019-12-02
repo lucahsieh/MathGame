@@ -1,7 +1,13 @@
 package io.github.lucahsieh.mathgame;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
     Button[] options;
     Button resetBtn;
 
+    public static final String CHANNEL_1_ID = "channel1";
+    private NotificationManagerCompat notificationMgmt;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
 
         reset();
 
+        createNotificationChannels();
+        notificationMgmt = NotificationManagerCompat.from(this);
+
     }
 
     private void renderQuestionOptions(){
@@ -46,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         String status = score + "/" + questionNum;
         statusTV.setText(status);
         //render question.
-        String question = "" + questionNum +".  " + left;
+        String question = "" +( questionNum + 1) +".  " + left;
         switch (operation){
             case 0 :
                 question += (" + ");break;
@@ -95,16 +107,17 @@ public class MainActivity extends AppCompatActivity {
 
     public void reset(){
         score = 0;
-        questionNum = 1;
+        questionNum = 0;
         generateQuestion();
         renderQuestionOptions();
     }
 
     public void nextQuestion(){
-        if(questionNum > 5) {
+        if(questionNum >= 5) {
             //game ends;
             //TODO: notification.
-            Toast.makeText(MainActivity.this,"GameEnds," + score +"/"+questionNum, Toast.LENGTH_LONG);
+            makeNotice();
+//            Toast.makeText(MainActivity.this,"GameEnds," + score +"/"+questionNum, Toast.LENGTH_LONG);
             reset();
             return;
         }
@@ -142,5 +155,33 @@ public class MainActivity extends AppCompatActivity {
                 ans = left / right;
                 break;
         }
+    }
+
+    private void createNotificationChannels(){
+        if (Build.VERSION.SDK_INT>=Build.VERSION_CODES.O) {
+            NotificationChannel channel1 = new NotificationChannel(
+                    CHANNEL_1_ID,
+                    "Channel 1",
+                    NotificationManager.IMPORTANCE_HIGH
+            );
+            channel1.setDescription("to show your score");
+
+            NotificationManager nm = getSystemService(NotificationManager.class);
+            nm.createNotificationChannel(channel1);
+        }
+    }
+
+    private void makeNotice(){
+        String appName = getResources().getString(R.string.app_name);
+        String scoreTx = getResources().getString(R.string.yourScore);
+        Notification n = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setContentTitle(appName)
+                .setContentText(scoreTx+" "+score+" / "+questionNum)
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+        notificationMgmt.notify(1,n);
+
     }
 }
