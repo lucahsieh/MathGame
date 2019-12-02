@@ -3,4 +3,6 @@
     <string name="welcomeText">Welcome to Math Game</string>
     <string name="yourScore">Your Score</string>
     <string name="reset">Reset</string>
+    <string name="toKotlin">To Kotlin</string>
+    <string name="toJava">To Java</string>
 </resources>

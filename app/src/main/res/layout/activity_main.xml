@@ -9,52 +9,17 @@
     android:gravity="center"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/titleTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/welcomeText"
-        android:gravity="center"/>
-    <TextView
-        android:id="@+id/questionTV"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="40sp"
-        android:gravity="center"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/option1TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"/>
-        <Button
-            android:id="@+id/option2TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"/>
-        <Button
-            android:id="@+id/option3TV"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="-"/>
-    </LinearLayout>
-
     <Button
-        android:id="@+id/resetBtn"
+        android:id="@+id/toKotlin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/reset"
-        android:onClick="reset"/>
-    <TextView
-        android:id="@+id/statusTV"
-        android:layout_width="match_parent"
+        android:text="@string/toKotlin"
+        android:onClick="useKotlin"/>
+    <Button
+        android:id="@+id/toJava"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:text="-"/>
+        android:text="@string/toJava"
+        android:onClick="useJava"/>
 
 </LinearLayout>

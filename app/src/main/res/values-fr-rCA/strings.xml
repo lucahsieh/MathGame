@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Juego de matemáticas</string>
-    <string name="welcomeText">Bienvenido a Math Game</string>
-    <string name="yourScore">Tu puntuación</string>
-    <string name="reset">Reiniciar</string>
+    <string name="app_name">Jeu de maths</string>
+    <string name="welcomeText">Bienvenue au jeu de maths</string>
+    <string name="yourScore">Ton score</string>
+    <string name="reset">Réinitialiser</string>
+    <string name="toKotlin">To Kotlin</string>
+    <string name="toJava">To Java</string>
 </resources>
